@@ -1,3 +1,5 @@
+Attention: The ssh keys inside the 'ssh' directory are for test use only for this project, do not reuse these keys in other projects as they are open for public viewing.
+
 To run this program you will need the docker (20.10.12, build e91ed57) and docker compose (v2.2.3).
 
 How to run:
