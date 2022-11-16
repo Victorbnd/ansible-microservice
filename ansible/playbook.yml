@@ -1,0 +1,12 @@
+---
+
+- name: Ansible Provision OS and Packages Update
+  hosts: ansible
+  roles:
+    - base
+
+- name: Ansible Provision OS Update and Packages Install and Update
+  hosts: service
+  roles:
+    - base
+    - python

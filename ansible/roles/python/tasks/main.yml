@@ -1,0 +1,34 @@
+---
+
+- name: Install python3
+  yum: 
+    name: python3
+    state: latest
+
+- name: Pip install
+  yum: 
+    name: python3-pip
+    state: latest
+
+- name: Flask install
+  command: pip3 install Flask
+
+- name: Start Microservice
+  shell: nohup python3 /microservice/microservice/server.py > log.log 2>&1 &
+
+- name: Create status.sh script
+  blockinfile:
+    dest: "/microservice/status.sh"
+    block: |
+      #!/bin/sh
+      echo "microservice status:"
+      ps aux | grep server | grep -v grep && echo "Service is running" || echo "Service is not running"
+    create: yes
+    mode: "a+x"
+  
+- name: Verify microservice status
+  shell: bash /microservice/status.sh
+  register: command_output
+
+- debug:
+    var: command_output.stdout_lines

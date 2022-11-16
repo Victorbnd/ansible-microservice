@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  ansible:
+    container_name: ansible
+    privileged: true
+    hostname: ansible
+    build:
+      context: .
+      dockerfile: ./docker-ansible/Dockerfile
+    command: /usr/lib/systemd/systemd
+    ports:
+      - "22"
+
+  service:
+    container_name: service
+    privileged: true
+    hostname: service
+    build:
+      context: .
+      dockerfile: ./docker-service/Dockerfile
+    command: /usr/lib/systemd/systemd
+    ports:
+      - "22"
